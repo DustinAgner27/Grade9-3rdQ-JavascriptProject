@@ -1,0 +1,70 @@
+body{
+	background-color: #21282d;
+}
+nav{
+	background: rgba(0, 0, 0, 0.2);
+	height: 30px;
+	color: white;
+	margin-left: -8px;
+	margin-top: 2%;
+	width: 101.05%;
+	height: 13%;
+}
+.homelogo{
+	margin-top: 6px;
+	margin-left: 10%;
+	float: left;
+}
+.aboutlogo{
+	margin-top: 10px;
+	float: right;
+	margin-right: 8.2%;
+}
+.logo{
+	display: block;
+	margin-left: 45%;
+}
+.gamecontainer{
+	background-color: #293038;
+	width: 80%;
+	height: 85%;
+	margin-top: 2%;
+	margin-left: 10%;
+	position: absolute;
+}
+.aboutpic{
+	display: block;
+	margin-top: 15.8%;
+	margin-right: auto;
+	margin-left: auto;
+}
+.vehueltext{
+	width: 20%;
+	color: white;
+	font-family: Tahoma, Geneva, sans-serif;
+	float: left;
+	margin-left: 20%;
+	margin-top: 3%;
+}
+.dustintext{
+	width: 20%;
+	color: white;
+	font-family: Tahoma, Geneva, sans-serif;
+	float: left;
+	margin-left: 3%;
+	margin-top: 3%;
+}
+.shanetext{
+	width: 20%;
+	color: white;
+	font-family: Tahoma, Geneva, sans-serif;
+	float: left;
+	margin-left: 3%;
+	margin-top: 3%;
+}
+footer{
+	margin-top: 46%;
+	text-align: center;
+	color: #f7faf9;
+	font-family: Verdana, Geneva, sans-serif;
+}

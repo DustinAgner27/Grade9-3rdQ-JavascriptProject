@@ -1,0 +1,252 @@
+body{
+	background-color: #21282d;
+}
+nav{
+	background: rgba(0, 0, 0, 0.2);
+	height: 30px;
+	color: white;
+	margin-left: -8px;
+	margin-top: 2%;
+	width: 101.05%;
+	height: 13%;
+}
+.homelogo{
+	margin-top: 6px;
+	margin-left: 10%;
+	float: left;
+}
+.aboutlogo{
+	margin-top: 10px;
+	float: right;
+	margin-right: 8.2%;
+}
+.logo{
+	display: block;
+	margin-left: 45%;
+}
+#box {
+	width: 600px;
+	height: 550px;
+	border: 15px solid #9a9a9a;
+	margin: auto;
+	background-color: #1c1c1c;
+	position: relative;
+	overflow: hidden;
+	margin-top: 2%;
+}
+#small{
+	position: absolute;
+	width: 100px;
+	height: 10px;
+	background-color: #5cbdd7;
+	top: 540px;
+	left: 300px;
+}
+#ball{
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	border-radius: 10px;
+	background-color: red;
+	border: 1px solid white;
+}
+#brick1a{
+	position: absolute;
+	width: 100px;
+	height: 20px;
+	background-color: red;
+	border: 1px solid white;
+	left: 50px;
+	top: 30px;
+}
+#brick2a{
+	position: absolute;
+	width: 100px;
+	height: 20px;
+	background-color: red;
+	border: 1px solid white;
+	left: 180px;
+	top: 30px;
+}
+#brick3a{
+	position: absolute;
+	width: 100px;
+	height: 20px;
+	background-color: red;
+	border: 1px solid white;
+	left: 310px;
+	top: 30px;
+}
+#brick4a{
+	position: absolute;
+	width: 100px;
+	height: 20px;
+	background-color: red;
+	border: 1px solid white;
+	left: 440px;
+	top: 30px;
+}
+#brick5a{
+	position: absolute;
+	width: 100px;
+	height: 20px;
+	background-color: blue;
+	border: 1px solid white;
+	left: 50px;
+	top: 70px;
+}
+#brick6a{
+	position: absolute;
+	width: 100px;
+	height: 20px;
+	background-color: blue;
+	border: 1px solid white;
+	left: 180px;
+	top: 70px;
+}
+#brick7a{
+	position: absolute;
+	width: 100px;
+	height: 20px;
+	background-color: blue;
+	border: 1px solid white;
+	left: 310px;
+	top: 70px;
+}
+#brick8a{
+	position: absolute;
+	width: 100px;
+	height: 20px;
+	background-color: blue;
+	border: 1px solid white;
+	left: 440px;
+	top: 70px;
+}
+#brick9a{
+	position: absolute;
+	width: 100px;
+	height: 20px;
+	background-color: yellow;
+	border: 1px solid white;
+	left: 50px;
+	top: 110px;
+}
+#brick10a{
+	position: absolute;
+	width: 100px;
+	height: 20px;
+	background-color: yellow;
+	border: 1px solid white;
+	left: 180px;
+	top: 110px;
+}
+#brick11a{
+	position: absolute;
+	width: 100px;
+	height: 20px;
+	background-color: yellow;
+	border: 1px solid white;
+	left: 310px;
+	top: 110px;
+}
+#brick12a{
+	position: absolute;
+	width: 100px;
+	height: 20px;
+	background-color: yellow;
+	border: 1px solid white;
+	left: 440px;
+	top: 110px;
+}
+#youwin{
+	height: 270px;
+	color: white;
+	display: block;
+	margin-top: 25%;
+	position: relative;
+	z-index: -1;
+	background-color: white;
+}
+#winning{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	height: 70%;
+	width: 50%;
+}
+.playagain{
+	border: none;
+	height: 30px;
+	margin-left: 30%;
+	margin-top: 15px;
+	background-color: red;
+	color: white;
+	opacity: .5;
+}
+.playagain:hover{
+	opacity: 1;
+}
+.level{
+	float: right;
+	border: none;
+	height: 30px;
+	margin-right: 30%;
+	margin-top: 15px;
+	background-color: red;
+	color: white;
+	opacity: .5;
+}
+.level:hover{
+	opacity: 1;
+}
+#youlose{
+	height: 270px;
+	color: white;
+	display: block;
+	margin-top: -50%;
+	position: relative;
+	z-index: -1;
+	background-color: white;
+	
+}
+#losing{
+	display: block;
+	margin: auto;
+	height: 70%;
+	width: 50%;
+}
+.levels{
+	border: none;
+	height: 30px;
+	margin-left: 50%;
+    margin-top: -60px;
+	background-color: red;
+	color: white;
+	opacity: .5;
+}
+.levels:hover{
+	opacity: 1;
+}
+#clickme{
+	margin-top:45%;
+	margin-left: 20%;
+	color: white;
+	font-family: Verdana, Geneva, sans-serif;
+}
+.gameinfo{
+	float: left;
+	position: absolute;
+	color: #f7faf9;
+	font-family: Verdana, Geneva, sans-serif;
+	margin-top: 2%;
+	margin-left: 2%;
+	width: 20%;
+}
+.brickbr{
+	text-align: center;
+}
+footer{
+	text-align: center;
+	color: #f7faf9;
+	font-family: Verdana, Geneva, sans-serif;
+}

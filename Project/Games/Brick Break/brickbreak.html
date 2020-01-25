@@ -1,0 +1,979 @@
+<!DOCTYPE.html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="brickbreak.css">
+	<title>
+		Brick Break Easy
+	</title>
+</head>
+<body>
+	<header>
+		<nav>
+			<a href="../../About/about.html"><img class="aboutlogo" src="../../Pictures/aboutlogo.png" height="70px"></a>
+			<a href="../../Homepage/homepage.html"><img class="homelogo" src="../../Pictures/homelogo.png" height="80px" width="100px"></a>
+			<img class="logo" src="../../Pictures/logo.png" height="100px">
+		</nav>
+	</header>
+	<div class="gameinfo">
+		<p class="brickbr"><strong>BRICK BREAK!</strong></p>
+		HOW TO PLAY:
+		<br>
+		Control the paddle with your mouse. The ball will bounce off the paddle you are controlling. A brick breaks when the ball touches the brick. 
+		The goal of the game is to break all of the bricks while making sure the ball does not touch the bottom of the game area.
+	</div>
+	<audio id="bouncesfx">
+	  <source src="bounce.wav" type="audio/wav">
+	  Your browser does not support the audio element.
+	</audio>
+	<audio id="destroysfx">
+	  <source src="destroy.wav" type="audio/wav">
+	  Your browser does not support the audio element.
+	</audio>
+	<audio id="gameoversfx">
+	  <source src="gameover.wav" type="audio/wav">
+	  Your browser does not support the audio element.
+	</audio>
+	<audio id="gameovervoicesfx">
+	  <source src="gameovervoice.wav" type="audio/wav">
+	  Your browser does not support the audio element.
+	</audio>
+	<audio id="victorysfx">
+	  <source src="victory.wav" type="audio/wav">
+	  Your browser does not support the audio element.
+	</audio>
+	<div id="box" onmousemove="showCoords(event)" onclick="startfun()">
+		<div id="small"></div>
+		<div id="ball"></div>
+		<div id="brick1a"></div>
+		<div id="brick2a"></div>
+		<div id="brick3a"></div>
+		<div id="brick4a"></div>
+		<div id="brick5a"></div>
+		<div id="brick6a"></div>
+		<div id="brick7a"></div>
+		<div id="brick8a"></div>
+		<div id="brick9a"></div>
+		<div id="brick10a"></div>
+		<div id="brick11a"></div>
+		<div id="brick12a"></div>
+		<p id="clickme">Click Anywhere On The Game Area To Start</p>
+		<div id="youwin">
+			<img id="winning" src="win.jpg" height="70px">
+			<button style="cursor:pointer" class="playagain" onclick="window.location.href = 'brickbreak.html';">Play Again</button>			
+			<button style="cursor:pointer" class="level" onclick="window.location.href = 'levels.html';">Choose Level</button>
+		</div>
+		<div id="youlose">
+			<img id="losing" src="lose.jpg" height="70px">
+			<button style="cursor:pointer" class="playagain" onclick="window.location.href = 'brickbreak.html';">Play Again</button>			
+			<button style="cursor:pointer" class="levels" onclick="window.location.href = 'levels.html';">Choose Level</button>
+		</div>
+		
+	</div>
+	<script>
+		var b = document.getElementById("box");
+		var s = document.getElementById("small");
+		var win = document.getElementById("youwin");
+		var lose = document.getElementById("youlose");
+		var brick1 = document.getElementById("brick1a");
+		var brick2 = document.getElementById("brick2a");
+		var brick3 = document.getElementById("brick3a");
+		var brick4 = document.getElementById("brick4a");
+		var brick5 = document.getElementById("brick5a");
+		var brick6 = document.getElementById("brick6a");
+		var brick7 = document.getElementById("brick7a");
+		var brick8 = document.getElementById("brick8a");
+		var brick9 = document.getElementById("brick9a");
+		var brick10 = document.getElementById("brick10a");
+		var brick11 = document.getElementById("brick11a");
+		var brick12 = document.getElementById("brick12a");
+		var bouncy = document.getElementById("bouncesfx"); 
+		var gameovery = document.getElementById("gameoversfx"); 
+		var gameovervoicey = document.getElementById("gameovervoicesfx"); 
+		var victoryy = document.getElementById("victorysfx"); 
+		var destroye = document.getElementById("destroysfx"); 
+		var b1=1,b2=1,b3=1,b4=1,b5=1,b6=1,b7=1,b8=1,b9=1,b10=1,b11=1,b12=1;
+		var brickcounter=0;
+		var clickonme = document.getElementById("clickme");
+		compare=0;
+		function showCoords(event) {
+			s.style.left=(event.clientX-b.getBoundingClientRect().left-(s.clientWidth/2)) + "px";
+			compare=Math.round((event.clientX-b.getBoundingClientRect().left-(s.clientWidth/2)));
+			if(compare<0){
+				s.style.left="0px";
+				compare=0;
+			}
+			else if(compare>b.clientWidth-s.clientWidth){
+				s.style.left=b.clientWidth-s.clientWidth + "px";
+				compare=b.clientWidth-s.clientWidth;
+			}
+			else{}
+		}
+		startclick=1;
+		var bal = document.getElementById("ball");
+		var interv=2;
+		var id = setInterval(frame, interv);
+		var positionx=0;
+		var positiony=0;
+		var numx=1;
+		var numy=1;
+		function startfun(){
+			startclick=0;
+			clickonme.remove();
+		}
+		function destroysound(){
+			destroye.play();
+		}
+		function frame() {
+			if(startclick==1){
+				bal.style.top = b.clientHeight-s.clientHeight-bal.clientHeight-2 + "px"; 
+				bal.style.left = compare+s.clientWidth/2-bal.clientWidth/2 + "px";
+				positionx=compare+s.clientWidth/2-bal.clientWidth/2;
+				positiony=b.clientHeight-s.clientHeight-bal.clientHeight-2;
+			}
+			else{
+			//paddle
+			if(positionx>compare && positionx<compare+s.clientWidth && positiony==b.clientHeight-s.clientHeight-ball.clientHeight){
+				bouncy.play();
+				numy=-1;
+				positiony= positiony + numy; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//bottom
+			else if (positiony == b.clientHeight-bal.clientHeight) {
+				gameovery.play();
+				positiony=999;
+				
+			} 
+			//right
+			else if(positionx == b.clientWidth-bal.clientHeight){
+				bouncy.play();
+				numx=-1;
+				positionx= positionx + numx; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//top
+			else if(positiony == 0){
+				bouncy.play();
+				numy=1;
+				positiony= positiony + numy; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//left
+			else if(positionx == 0){
+				bouncy.play();
+				numx=1;
+				positionx= positionx + numx; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//brick1
+			//top
+			else if (positiony == 30-bal.clientHeight/2 && positionx>=45 && positionx<=55+brick1.clientWidth && b1==1) {
+				brick1.remove();
+				destroysound();
+				b1=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				numy=-1;
+				interv=interv-.1;
+				positiony= positiony + numy; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			} 
+			//bottom
+			else if(positiony == 30+brick1.clientHeight/2+bal.clientHeight && positionx>=45 && positionx<=55+brick1.clientWidth && b1==1){
+				brick1.remove();
+				destroysound();
+				b1=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				numy=1;
+				interv=interv-.1;
+				positiony= positiony + numy; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//left
+			else if(positionx == 50-bal.clientWidth/2 && positiony>=27 && positiony<=30+brick1.clientHeight+3 && b1==1){
+				brick1.remove();
+				destroysound();
+				b1=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				numx=-1;
+				interv=interv-.1;
+				positionx= positionx + numx; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//right
+			else if(positionx == 50+brick1.clientWidth+bal.clientWidth/2 && positiony>=27 && positiony<=30+brick1.clientHeight+3 && b1==1){
+				brick1.remove();
+				destroysound();
+				b1=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				numx=1;
+				interv=interv-.1;
+				positionx= positionx + numx; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//brick2
+			//top
+			else if (positiony == 30-bal.clientHeight/2 && positionx>=175 && positionx<=185+brick2.clientWidth && b2==1) {
+				brick2.remove();
+				destroysound();
+				b2=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				numy=-1;
+				interv=interv-.1;
+				positiony= positiony + numy; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			} 
+			//bottom
+			else if(positiony == 30+brick2.clientHeight/2+bal.clientHeight && positionx>=175 && positionx<=185+brick2.clientWidth && b2==1){
+				brick2.remove();
+				destroysound();
+				b2=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				numy=1;
+				interv=interv-.1;
+				positiony= positiony + numy; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//left
+			else if(positionx == 180-bal.clientWidth/2 && positiony>=27 && positiony<=30+brick2.clientHeight+3 && b2==1){
+				brick2.remove();
+				destroysound();
+				b2=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				numx=-1;
+				interv=interv-.1;
+				positionx= positionx + numx; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//right
+			else if(positionx == 180+brick2.clientWidth+bal.clientWidth/2 && positiony>=27 && positiony<=30+brick2.clientHeight+3 && b2==1){
+				brick2.remove();
+				destroysound();
+				b2=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				numx=1;
+				interv=interv-.1;
+				positionx= positionx + numx; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//brick3
+			//top
+			else if (positiony == 30-bal.clientHeight/2 && positionx>=305 && positionx<=315+brick3.clientWidth && b3==1) {
+				brick3.remove();
+				destroysound();
+				b3=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				numy=-1;
+				interv=interv-.1;
+				positiony= positiony + numy; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			} 
+			//bottom
+			else if(positiony == 30+brick3.clientHeight/2+bal.clientHeight && positionx>=305 && positionx<=315+brick3.clientWidth && b3==1){
+				brick3.remove();
+				destroysound();
+				b3=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				numy=1;
+				interv=interv-.1;
+				positiony= positiony + numy; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//left
+			else if(positionx == 310-bal.clientWidth/2 && positiony>=27 && positiony<=30+brick3.clientHeight+3 && b3==1){
+				brick3.remove();
+				destroysound();
+				b3=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				numx=-1;
+				interv=interv-.1;
+				positionx= positionx + numx; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//right
+			else if(positionx == 310+brick3.clientWidth+bal.clientWidth/2 && positiony>=27 && positiony<=30+brick3.clientHeight+3 && b3==1){
+				brick3.remove();
+				destroysound();
+				b3=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				numx=1;
+				interv=interv-.1;
+				positionx= positionx + numx; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//brick4
+			//top
+			else if (positiony == 30-bal.clientHeight/2 && positionx>=435 && positionx<=445+brick4.clientWidth && b4==1) {
+				brick4.remove();
+				destroysound();
+				b4=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				numy=-1;
+				interv=interv-.1;
+				positiony= positiony + numy; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			} 
+			//bottom
+			else if(positiony == 30+brick4.clientHeight/2+bal.clientHeight && positionx>=435 && positionx<=445+brick4.clientWidth && b4==1){
+				brick4.remove();
+				destroysound();
+				numy=1;
+				b4=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				interv=interv-.1;
+				positiony= positiony + numy; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//left
+			else if(positionx == 440-bal.clientWidth/2 && positiony>=27 && positiony<=30+brick4.clientHeight+3 && b4==1){
+				brick4.remove();
+				destroysound();
+				numx=-1;
+				b4=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				interv=interv-.1;
+				positionx= positionx + numx; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//right
+			else if(positionx == 440+brick4.clientWidth+bal.clientWidth/2 && positiony>=27 && positiony<=30+brick4.clientHeight+3 && b4==1){
+				brick4.remove();
+				destroysound();
+				numx=1;
+				b4=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				interv=interv-.1;
+				positionx= positionx + numx; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//brick5
+			//top
+			else if (positiony == 70-bal.clientHeight/2 && positionx>=45 && positionx<=55+brick5.clientWidth && b5==1) {
+				brick5.remove();
+				destroysound();
+				numy=-1;
+				b5=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				interv=interv-.1;
+				positiony= positiony + numy; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			} 
+			//bottom
+			else if(positiony == 70+brick5.clientHeight/2+bal.clientHeight && positionx>=45 && positionx<=55+brick5.clientWidth && b5==1){
+				brick5.remove();
+				destroysound();
+				numy=1;
+				b5=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				interv=interv-.1;
+				positiony= positiony + numy; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//left
+			else if(positionx == 50-bal.clientWidth/2 && positiony>=67 && positiony<=70+brick5.clientHeight+3 && b5==1){
+				brick5.remove();
+				destroysound();
+				numx=-1;
+				b5=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				interv=interv-.1;
+				positionx= positionx + numx; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//right
+			else if(positionx == 50+brick1.clientWidth+bal.clientWidth/2 && positiony>=67 && positiony<=70+brick5.clientHeight+3 && b5==1){
+				brick5.remove();
+				destroysound();
+				numx=1;
+				b5=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				interv=interv-.1;
+				positionx= positionx + numx; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//brick6
+			//top
+			else if (positiony == 70-bal.clientHeight/2 && positionx>=175 && positionx<=185+brick6.clientWidth && b6==1) {
+				brick6.remove();
+				destroysound();
+				numy=-1;
+				b6=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				interv=interv-.1;
+				positiony= positiony + numy; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			} 
+			//bottom
+			else if(positiony == 70+brick6.clientHeight/2+bal.clientHeight && positionx>=175 && positionx<=185+brick6.clientWidth && b6==1){
+				brick6.remove();
+				destroysound();
+				numy=1;
+				b6=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				interv=interv-.1;
+				positiony= positiony + numy; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//left
+			else if(positionx == 180-bal.clientWidth/2 && positiony>=67 && positiony<=70+brick6.clientHeight+3 && b6==1){
+				brick6.remove();
+				destroysound();
+				numx=-1;
+				b6=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				interv=interv-.1;
+				positionx= positionx + numx; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//right
+			else if(positionx == 180+brick6.clientWidth+bal.clientWidth/2 && positiony>=67 && positiony<=70+brick6.clientHeight+3 && b6==1){
+				brick6.remove();
+				destroysound();
+				numx=1;
+				b6=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				interv=interv-.1;
+				positionx= positionx + numx; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//brick7
+			//top
+			else if (positiony == 70-bal.clientHeight/2 && positionx>=305 && positionx<=315+brick7.clientWidth && b7==1) {
+				brick7.remove();
+				destroysound();
+				b7=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				numy=-1;
+				interv=interv-.1;
+				positiony= positiony + numy; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			} 
+			//bottom
+			else if(positiony == 70+brick7.clientHeight/2+bal.clientHeight && positionx>=305 && positionx<=315+brick7.clientWidth && b7==1){
+				brick7.remove();
+				destroysound();
+				b7=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				numy=1;
+				interv=interv-.1;
+				positiony= positiony + numy; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//left
+			else if(positionx == 310-bal.clientWidth/2 && positiony>=67 && positiony<=70+brick7.clientHeight+3 && b7==1){
+				brick7.remove();
+				destroysound();
+				b7=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				numx=-1;
+				interv=interv-.1;
+				positionx= positionx + numx; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//right
+			else if(positionx == 310+brick7.clientWidth+bal.clientWidth/2 && positiony>=67 && positiony<=70+brick7.clientHeight+3 && b7==1){
+				brick7.remove();
+				destroysound();
+				b7=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				numx=1;
+				interv=interv-.1;
+				positionx= positionx + numx; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//brick8
+			//top
+			else if (positiony == 70-bal.clientHeight/2 && positionx>=435 && positionx<=445+brick8.clientWidth && b8==1) {
+				brick8.remove();
+				destroysound();
+				b8=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				numy=-1;
+				interv=interv-.1;
+				positiony= positiony + numy; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			} 
+			//bottom
+			else if(positiony == 70+brick8.clientHeight/2+bal.clientHeight && positionx>=435 && positionx<=445+brick8.clientWidth && b8==1){
+				brick8.remove();
+				destroysound();
+				numy=1;
+				b8=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				interv=interv-.1;
+				positiony= positiony + numy; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//left
+			else if(positionx == 440-bal.clientWidth/2 && positiony>=67 && positiony<=70+brick8.clientHeight+3 && b8==1){
+				brick8.remove();
+				destroysound();
+				numx=-1;
+				b8=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				interv=interv-.1;
+				positionx= positionx + numx; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//right
+			else if(positionx == 440+brick8.clientWidth+bal.clientWidth/2 && positiony>=67 && positiony<=70+brick8.clientHeight+3 && b8==1){
+				brick8.remove();
+				destroysound();
+				numx=1;
+				b8=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				interv=interv-.1;
+				positionx= positionx + numx; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//brick9
+			//top
+			else if (positiony == 110-bal.clientHeight/2 && positionx>=45 && positionx<=55+brick9.clientWidth && b9==1) {
+				brick9.remove();
+				destroysound();
+				numy=-1;
+				b9=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				interv=interv-.1;
+				positiony= positiony + numy; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			} 
+			//bottom
+			else if(positiony == 110+brick9.clientHeight/2+bal.clientHeight && positionx>=45 && positionx<=55+brick9.clientWidth && b9==1){
+				brick9.remove();
+				destroysound();
+				numy=1;
+				b9=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				interv=interv-.1;
+				positiony= positiony + numy; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//left
+			else if(positionx == 50-bal.clientWidth/2 && positiony>=107 && positiony<=110+brick9.clientHeight+3 && b9==1){
+				brick9.remove();
+				destroysound();
+				numx=-1;
+				b9=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				interv=interv-.1;
+				positionx= positionx + numx; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//right
+			else if(positionx == 50+brick9.clientWidth+bal.clientWidth/2 && positiony>=107 && positiony<=110+brick9.clientHeight+3 && b9==1){
+				brick9.remove();
+				destroysound();
+				numx=1;
+				b9=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				interv=interv-.1;
+				positionx= positionx + numx; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//brick10
+			//top
+			else if (positiony == 110-bal.clientHeight/2 && positionx>=175 && positionx<=185+brick10.clientWidth && b10==1) {
+				brick10.remove();
+				destroysound();
+				numy=-1;
+				b10=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				interv=interv-.1;
+				positiony= positiony + numy; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			} 
+			//bottom
+			else if(positiony == 110+brick6.clientHeight/2+bal.clientHeight && positionx>=175 && positionx<=185+brick10.clientWidth && b10==1){
+				brick10.remove();
+				destroysound();
+				numy=1;
+				b10=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				interv=interv-.1;
+				positiony= positiony + numy; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//left
+			else if(positionx == 180-bal.clientWidth/2 && positiony>=107 && positiony<=110+brick10.clientHeight+3 && b10==1){
+				brick10.remove();
+				destroysound();
+				numx=-1;
+				b10=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				interv=interv-.1;
+				positionx= positionx + numx; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//right
+			else if(positionx == 180+brick6.clientWidth+bal.clientWidth/2 && positiony>=107 && positiony<=110+brick10.clientHeight+3 && b10==1){
+				brick10.remove();
+				destroysound();
+				numx=1;
+				b10=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				interv=interv-.1;
+				positionx= positionx + numx; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//brick11
+			//top
+			else if (positiony == 110-bal.clientHeight/2 && positionx>=305 && positionx<=315+brick11.clientWidth && b11==1) {
+				brick11.remove();
+				destroysound();
+				b11=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				numy=-1;
+				interv=interv-.1;
+				positiony= positiony + numy; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			} 
+			//bottom
+			else if(positiony == 110+brick11.clientHeight/2+bal.clientHeight && positionx>=305 && positionx<=315+brick11.clientWidth && b11==1){
+				brick11.remove();
+				destroysound();
+				b11=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				numy=1;
+				interv=interv-.1;
+				positiony= positiony + numy; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//left
+			else if(positionx == 310-bal.clientWidth/2 && positiony>=107 && positiony<=110+brick11.clientHeight+3 && b11==1){
+				brick11.remove();
+				destroysound();
+				b11=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				numx=-1;
+				interv=interv-.1;
+				positionx= positionx + numx; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//right
+			else if(positionx == 310+brick11.clientWidth+bal.clientWidth/2 && positiony>=107 && positiony<=110+brick11.clientHeight+3 && b11==1){
+				brick11.remove();
+				destroysound();
+				b11=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				numx=1;
+				interv=interv-.1;
+				positionx= positionx + numx; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//brick12
+			//top
+			else if (positiony == 110-bal.clientHeight/2 && positionx>=435 && positionx<=445+brick12.clientWidth && b12==1) {
+				brick12.remove();
+				destroysound();
+				b12=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				numy=-1;
+				interv=interv-.1;
+				positiony= positiony + numy; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			} 
+			//bottom
+			else if(positiony == 110+brick12.clientHeight/2+bal.clientHeight && positionx>=435 && positionx<=445+brick12.clientWidth && b12==1){
+				brick12.remove();
+				destroysound();
+				numy=1;
+				b12=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				interv=interv-.1;
+				positiony= positiony + numy; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//left
+			else if(positionx == 440-bal.clientWidth/2 && positiony>=107 && positiony<=110+brick12.clientHeight+3 && b12==1){
+				brick12.remove();
+				destroysound();
+				numx=-1;
+				b12=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				interv=interv-.1;
+				positionx= positionx + numx; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			//right
+			else if(positionx == 440+brick12.clientWidth+bal.clientWidth/2 && positiony>=107 && positiony<=110+brick12.clientHeight+3 && b12==1){
+				brick12.remove();
+				destroysound();
+				numx=1;
+				b12=0;
+				brickcounter++;
+				if (brickcounter==12){
+					positiony=9999;
+					positionx=9999;
+				}
+				interv=interv-.1;
+				positionx= positionx + numx; 
+				bal.style.top = positiony + "px"; 
+				bal.style.left = positionx + "px";
+			}
+			else {
+				if(positiony==999){
+					lose.style.zIndex="2";
+				}
+				else if(brickcounter==12){
+					win.style.zIndex="3";
+					brickcounter=15;
+					victoryy.play();
+				}
+				else if(brickcounter==15){
+				}
+				else{
+					positionx= positionx +numx; 
+					positiony= positiony +numy;
+					bal.style.top = positiony + "px"; 
+					bal.style.left = positionx + "px"; 
+				}
+			}
+			}
+		}
+	</script>
+	<br>
+	<footer>
+		&copy; PLAYER ONE 2019 | PHILIPPINE SCIENCE HIGH SCHOOL - EASTERN VISAYAS CAMPUS, ALL RIGHTS RESERVED
+	</footer>
+</body>
+</html>

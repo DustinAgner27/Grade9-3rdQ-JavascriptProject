@@ -1,0 +1,81 @@
+body{
+	background-color: #21282d;
+}
+nav{
+	background: rgba(0, 0, 0, 0.2);
+	height: 30px;
+	color: white;
+	margin-left: -8px;
+	margin-top: 2%;
+	width: 101.05%;
+	height: 13%;
+}
+.homelogo{
+	margin-top: 6px;
+	margin-left: 10%;
+	float: left;
+}
+.aboutlogo{
+	margin-top: 10px;
+	float: right;
+	margin-right: 8.2%;
+}
+.logo{
+	display: block;
+	margin-left: 45%;
+}
+#box {
+	width: 600px;
+	height: 980px;
+	border: 15px solid #9a9a9a;
+	margin: auto;
+	background-color: #1c1c1c;
+	position: relative;
+	overflow: hidden;
+	margin-top: 2%;
+}
+.title{
+	color: white;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 40px;
+	margin-left: 5%;
+}
+.easy{
+	font-family: Tahoma, Geneva, sans-serif;
+	height: 250px;
+	background-color: #27313a;
+	color: white;
+	opacity: .5;
+	margin-top: 5%;
+	width: 90%;
+	margin-left: 5%;
+}
+.easy:hover{
+	opacity: 1;
+}
+.easypic{
+}
+.easytitle{
+	font-size: 30px;
+	margin-top: 20px;
+	margin-right: 25%;
+	float: right;
+}
+.easytext{
+	width: 50%;
+	margin-top: -30%;
+	margin-right: 5%;
+	float: right;
+	font-size: 20px;
+}
+.mediumtitle{
+	font-size: 30px;
+	margin-top: 20px;
+	margin-right: 20%;
+	float: right;
+}
+footer{
+	text-align: center;
+	color: #f7faf9;
+	font-family: Verdana, Geneva, sans-serif;
+}
