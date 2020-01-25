@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Project 2.0</title>
+</head>
+<body>
+    <style>
+        #frame001 {
+            height: 400px;
+            width: 400px;
+            background-color: #ACC391;
+            border: 3px solid black;
+            margin: auto;
+            padding: 4px;
+            border-radius: 10px;
+        }
+
+        #center001 {
+            text-align: center;
+            color: black;
+	    font-family: Arial, Helvetica, sans-serif;
+        }
+		body{
+			background-color: #21282d;
+		}
+		nav{
+			background: rgba(0, 0, 0, 0.2);
+			height: 30px;
+			color: white;
+			margin-left: -8px;
+			margin-top: 2%;
+			width: 101.05%;
+			height: 13%;
+		}
+		.homelogo{
+			margin-top: 6px;
+			margin-left: 10%;
+			float: left;
+		}
+		.aboutlogo{
+			margin-top: 10px;
+			float: right;
+			margin-right: 8.2%;
+		}
+		.logo{
+			display: block;
+			margin-left: 45%;
+		}
+		footer{
+			text-align: center;
+			color: #f7faf9;
+			font-family: Verdana, Geneva, sans-serif;
+		}
+    </style>
+	<header>
+		<nav>
+			<a href="../../About/about.html"><img class="aboutlogo" src="../../Pictures/aboutlogo.png" height="70px"></a>
+			<a href="../../Homepage/homepage.html"><img class="homelogo" src="../../Pictures/homelogo.png" height="80px" width="100px"></a>
+			<img class="logo" src="../../Pictures/logo.png" height="100px">
+		</nav>
+	</header>
+	<br>
+    <div id="frame001">
+        <div id="center001">
+            <h2>ASTRA MILITARUM QUIZ</h2>
+            <hr />
+            <p id="message001"></p>
+            <p id="options001"></p>
+            <p id="comment001"></p>
+            <p id="click001"></p>
+        </div>
+    </div>
+
+    <script>
+	var start001 = ["Your mission: To answer this quiz to test your knowledge on the Astra Militarum. Points will range from 1-2. You will be put under time pressure. GOOD LUCK SOLDIER"]
+        var question001 = ["What is the old name of the Astra Militarum?"];
+        var choices001 = ["<input onclick=correct001() name=button001 type=radio />Imperiales Auxilia<br /><input onclick=incorrect001() name=button001 type=radio />Officio Prefectus<br /><input onclick=incorrect001() name=button001 type=radio />Militarum Regimientos<br />"];
+        
+        var question002 = ["What is the old Low Gothic name of the Astra Militarum?"];
+        var choices002 = ["<input onclick=incorrect002() name=button002 type=radio />Imperial Guard<br /><input onclick=correct002() name=button002 type=radio />Imperial Army<br /><input onclick=incorrect002() name=button002 type=radio />Imperial Legion<br />"];
+
+	 var question003 = ["The Astra Militarum was under which faction?"];
+        var choices003 = ["<input onclick=incorrect003() name=button003 type=radio />Adeptus Ministorum<br /><input onclick=correct003() name=button003 type=radio />Adeptus Astartes<br /><input onclick=incorrect003() name=button003 type=radio />Adeptus Mechanicus<br />"];
+
+	var question004 = ["True or False:The Imperial Guard and Imperial Navy were under one command prior to the Horus Heresy"];
+        var choices004 = ["<input onclick=correct004() name=button004 type=radio />True<br /><input onclick=incorrect004() name=button004 type=radio />False<br />"];
+
+	var question005 = ["Which rank is bestowed when an officer is leading an Imperial Crusade?"];
+        var choices005 = ["<input onclick=correct005() name=button005 type=radio />Warmaster (Lord Solar)<br /><input onclick=incorrect005() name=button005 type=radio />Lord Commander<br /><input onclick=incorrect005() name=button005 type=radio />Lord General<br />"];
+	
+	var question006 = ["Which Regiment is considered 'a regiment of commissars'?"];
+        var choices006 = ["<input onclick=incorrect006() name=button006 type=radio />Tanith First-and-Only<br /><input onclick=incorrect006() name=button006 type=radio />Herakoni Warhawks<br /><input onclick=correct006() name=button006 type=radio />Terrax Guard<br />"];
+
+	var question007 = ["Where is the headquarter of Warfleet Obscurus?"];
+        var choices007 = ["<input onclick=incorrect007() name=button007 type=radio />Belial IV<br /><input onclick=correct007() name=button007 type=radio />Cypra Mundi<br /><input onclick=incorrect007() name=button007 type=radio />Medusa<br />"];
+
+	var question008 = ["True or False: The battleship 'His Will' fought in the Battle of Pelucidar"];
+        var choices008 = ["<input onclick=incorrect008() name=button008 type=radio />True<br /><input onclick=correct008() name=button008 type=radio />False<br />"];
+	
+	var question009 = ["How many vessels are there in a Sector Battlefleet?"];
+        var choices009 = ["<input onclick=correct009() name=button009 type=radio />50-75 vessels<br /><input onclick=incorrect009() name=button009 type=radio />100-150 vessels<br /><input onclick=incorrect009() name=button009 type=radio />200-300 vessels<br />"];
+
+	var question010 = ["Who commanded Battlefleet Solar-Rimward in the War of the Beat"];
+        var choices010 = ["<input onclick=incorrect010() name=button010 type=radio />Drang<br /><input onclick=correct010() name=button010 type=radio />Thaddeon Trassq<br /><input onclick=incorrect010() name=button010 type=radio />Jaxon<br />"];
+
+	var question011 = ["Which Cadian Regiment that has the nickname 'Lord Castellan's Own'?"];
+        var choices011 = ["<input onclick=incorrect011() name=button011 type=radio />110th Cadian<br /><input onclick=incorrect011() name=button011 type=radio />39th Cadian<br /><input onclick=correct011() name=button011 type=radio />8th Cadian<br />"];
+
+	var question012 = ["True or False: The Valkyrie is a fighter aircraft"];
+        var choices012 = ["<input onclick=incorrect012() name=button012 type=radio />True<br /><input onclick=correct012() name=button012 type=radio />False<br />"];
+
+	var question013 = ["Who is the best known hero of the Armageddon Steel Legion?"];
+        var choices013 = ["<input onclick=incorrect013() name=button013 type=radio />Ibram Gaunt<br /><input onclick=correct013() name=button013 type=radio />Sebastian Yarrick<br /><input onclick=incorrect013() name=button013 type=radio />Lord Solar Macharius<br />"];
+
+	var question014 = ["Which planetary regiment is known for HALO jumps?"];
+        var choices014 = ["<input onclick=correct014() name=button014 type=radio />Herakoni Warhawks<br /><input onclick=incorrect014() name=button014 type=radio />Elysian Drop Troopers<br /><input onclick=incorrect014() name=button014 type=radio />Macharian Divers<br />"];
+
+	var question015 = ["Which Elite is known for their marksmanship skills?"];
+        var choices015 = ["<input onclick=correct015() name=button015 type=radio />Ratlings<br /><input onclick=incorrect015() name=button015 type=radio />Tempestus Scions<br /><input onclick=incorrect015() name=button015 type=radio />Ogryns<br />"];
+
+	var question016 = ["True or False: The battleship 'Divine Right' was the flagship of Battlefleet Gothic "];
+        var choices016 = ["<input onclick=correct016() name=button016 type=radio />True<br /><input onclick=incorrect016() name=button016 type=radio />False<br />"];
+
+	var question017 = ["What type of Heavy Weapons Squad if it is equipped with a Lascannon?"];
+        var choices017 = ["<input onclick=incorrect017() name=button017 type=radio />Mortar Support Squad<br /><input onclick=incorrect017() name=button017 type=radio />Fire Support Squad<br /><input onclick=correct017() name=button017 type=radio />Anti-Tank Squad<br />"];
+
+	var question018 = ["What is the name of one of the main fighter of the Imperial Navy?"];
+        var choices018 = ["<input onclick=correct018() name=button018 type=radio />Thunderbolt<br /><input onclick=incorrect018() name=button018 type=radio />Marauder<br /><input onclick=incorrect018() name=button018 type=radio />Vulture<br />"];
+
+	var question019 = ["Who's the right-hand man of Creed?"];
+        var choices019 = ["<input onclick=correct019() name=button019 type=radio />Ciaphas Cain<br /><input onclick=correct019() name=button019 type=radio />Jarran Kell<br /><input onclick=incorrect019() name=button019 type=radio />Ollanus Pius<br />"];
+
+        var question020 = ["Does a Bullgryn have a 2+ invunerable save with a slabshield? XD"];
+	var choices020 = ["<input onclick=incorrect020() name=button020 type=radio />YES!!!<br /><input onclick=correct020() name=button020 type=radio />NO!!!<br />"];
+
+        var a;
+        var b;
+	var c;
+	var d;
+	var e;
+	var f;
+	var g;
+	var h;
+	var i;
+	var j;
+	var k;
+	var l;
+	var m;
+	var n;
+	var o;
+	var p;
+	var q;
+	var r;
+	var s;
+        var t;
+        var z;
+
+        window.onload = function() {
+	    message001.innerHTML = start001;
+	    options001.innerHTML = "";
+            comment001.innerHTML = "";
+            click001.innerHTML = "<button onclick=set001()>START ANSWERING!!!</button>";
+	}
+	function set001() {
+            a = 0;
+            message001.innerHTML = question001;
+            options001.innerHTML = choices001;
+            click001.innerHTML = "<button onclick=set002()>Next</button>";
+        }
+
+        function correct001() {
+            a = 2;
+        }
+
+        function incorrect001() {
+            a = 0;
+        }
+
+        function set002() {
+            b = 0;
+            message001.innerHTML = question002;
+            options001.innerHTML = choices002;
+            click001.innerHTML = "<button onclick=set003()>Next</button>";
+        }
+
+        function correct002() {
+            b = 2;
+        }
+
+        function incorrect002() {
+            b = 0;
+        }
+	
+	 function set003() {
+            c = 0;
+            message001.innerHTML = question003;
+            options001.innerHTML = choices003;
+            click001.innerHTML = "<button onclick=set004()>Next</button>";
+        }
+
+        function correct003() {
+            c = 2;
+        }
+
+        function incorrect003() {
+            c = 0;
+        }
+
+	function set004() {
+            d = 0;
+            message001.innerHTML = question004;
+            options001.innerHTML = choices004;
+            click001.innerHTML = "<button onclick=set005()>Next</button>";
+        }
+
+        function correct004() {
+            d = 2;
+        }
+
+        function incorrect004() {
+            d = 0;
+        }
+
+	function set005() {
+            e = 0;
+            message001.innerHTML = question005;
+            options001.innerHTML = choices005;
+            click001.innerHTML = "<button onclick=set006()>Next</button>";
+        }
+
+        function correct005() {
+            e = 2;
+        }
+
+        function incorrect005() {
+            e = 0;
+        }
+	
+	function set006() {
+            f = 0;
+            message001.innerHTML = question006;
+            options001.innerHTML = choices006;
+            click001.innerHTML = "<button onclick=set007()>Next</button>";
+        }
+
+        function correct006() {
+            f = 2;
+        }
+
+        function incorrect006() {
+            f = 0;
+        }
+	
+	function set007() {
+            g = 0;
+            message001.innerHTML = question007;
+            options001.innerHTML = choices007;
+            click001.innerHTML = "<button onclick=set008()>Next</button>";
+        }
+
+        function correct007() {
+            g = 2;
+        }
+
+        function incorrect007() {
+            g = 0;
+        }
+
+	function set008() {
+            h = 0;
+            message001.innerHTML = question008;
+            options001.innerHTML = choices008;
+            click001.innerHTML = "<button onclick=set009()>Next</button>";
+        }
+
+        function correct008() {
+            h = 2;
+        }
+
+        function incorrect008() {
+            h = 0;
+        }
+	
+	function set009() {
+            i = 0;
+            message001.innerHTML = question009;
+            options001.innerHTML = choices009;
+            click001.innerHTML = "<button onclick=set010()>Next</button>";
+        }
+
+        function correct009() {
+            i = 2;
+        }
+
+        function incorrect009() {
+            i = 0;
+        }	
+
+	function set010() {
+            j = 0;
+            message001.innerHTML = question010;
+            options001.innerHTML = choices010;
+            click001.innerHTML = "<button onclick=set011()>Next</button>";
+        }
+
+        function correct010() {
+            j = 2;
+        }
+
+        function incorrect010() {
+            j = 0;
+        }	
+	
+	function set011() {
+            k = 0;
+            message001.innerHTML = question011;
+            options001.innerHTML = choices011;
+            click001.innerHTML = "<button onclick=set012()>Next</button>";
+        }
+
+        function correct011() {
+            k = 1;
+        }
+
+        function incorrect011() {
+            k = 0;
+        }		
+
+	function set012() {
+            l = 0;
+            message001.innerHTML = question012;
+            options001.innerHTML = choices012;
+            click001.innerHTML = "<button onclick=set013()>Next</button>";
+        }
+
+        function correct012() {
+            l = 1;
+        }
+
+        function incorrect012() {
+            l = 0;
+        }		
+	
+	function set013() {
+            m = 0;
+            message001.innerHTML = question013;
+            options001.innerHTML = choices013;
+            click001.innerHTML = "<button onclick=set014()>Next</button>";
+        }
+
+        function correct013() {
+            m = 1;
+        }
+
+        function incorrect013() {
+            m = 0;
+        }	
+
+	function set014() {
+            n = 0;
+            message001.innerHTML = question014;
+            options001.innerHTML = choices014;
+            click001.innerHTML = "<button onclick=set015()>Next</button>";
+        }
+
+        function correct014() {
+            n = 1;
+        }
+
+        function incorrect014() {
+            n = 0;
+        }	
+	
+	function set015() {
+            o = 0;
+            message001.innerHTML = question015;
+            options001.innerHTML = choices015;
+            click001.innerHTML = "<button onclick=set016()>Next</button>";
+        }
+
+        function correct015() {
+            o = 1;
+        }
+
+        function incorrect015() {
+            o = 0;
+        }	
+	
+	function set016() {
+            p = 0;
+            message001.innerHTML = question016;
+            options001.innerHTML = choices016;
+            click001.innerHTML = "<button onclick=set017()>Next</button>";
+        }
+
+        function correct016() {
+            p = 1;
+        }
+
+        function incorrect016() {
+            p = 0;
+        }		
+
+	function set017() {
+            q = 0;
+            message001.innerHTML = question017;
+            options001.innerHTML = choices017;
+            click001.innerHTML = "<button onclick=set018()>Next</button>";
+        }
+
+        function correct017() {
+            q = 1;
+        }
+
+        function incorrect017() {
+            q = 0;
+        }	
+	
+	function set018() {
+            r = 0;
+            message001.innerHTML = question018;
+            options001.innerHTML = choices018;
+            click001.innerHTML = "<button onclick=set019()>Next</button>";
+        }
+
+        function correct018() {
+            r = 1;
+        }
+
+        function incorrect018() {
+            r = 0;
+        }
+
+	
+	function set019() {
+            s = 0;
+            message001.innerHTML = question019;
+            options001.innerHTML = choices019;
+            click001.innerHTML = "<button onclick=set020()>Next</button>";
+        }
+
+        function correct019() {
+            s = 1;
+        }
+
+        function incorrect019() {
+            s = 0;
+        }	
+        function set020() {
+            t = 0;
+            message001.innerHTML = question020;
+            options001.innerHTML = choices020;
+            click001.innerHTML = "<button onclick=result001()>Score</button>";
+        }
+
+        function correct020() {
+            t = 1;
+        }
+
+        function incorrect020() {
+            t = 0;
+        }
+
+        function result001() {
+            z = a + b + c + d + e + f + g + h + i + j + k + l + m + n + o + p + q + r + s + t;
+            message001.innerHTML = "End of Quiz";
+            options001.innerHTML = "";
+            comment001.innerHTML = "Your score is: " + z +"/30";
+            click001.innerHTML = "<button onclick=repeat001()>Repeat</button>";
+        }
+
+        function repeat001() {
+            location.reload();
+        }
+    </script>
+	<br>
+	<footer>
+		&copy; PLAYER ONE 2019 | PHILIPPINE SCIENCE HIGH SCHOOL - EASTERN VISAYAS CAMPUS, ALL RIGHTS RESERVED
+	</footer>
+</body>
+</html>

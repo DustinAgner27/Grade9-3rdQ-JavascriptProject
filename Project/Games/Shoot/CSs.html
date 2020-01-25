@@ -1,0 +1,248 @@
+<html>
+
+  <head>
+    <style>
+      .target {
+        height: 0px;
+        width: 0px;
+        background-color: #732f40;
+        border-radius: 50%;
+        display: inline-block;
+        position: absolute;
+        z-index: 0;
+      }
+
+      div {
+        font-family: Century Gothic;
+      }
+
+      .container {
+        position: relative;
+        width: 500px;
+        height: 500px;
+        border: 3px solid #012917;
+        margin: auto;
+        overflow: hidden;
+      }
+
+      .container2 {
+        position: relative;
+        width: 500px;
+        height: 75px;
+        margin: auto;
+        border: 3px solid #012917;
+      }
+
+      .buton {
+        font-family: Copperplate Gothic Bold;
+        font-weight: bold;
+        width: 60px;
+        height: 30px;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+        z-index: 3;
+      }
+
+      .butons {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+        z-index: 0;
+      }
+
+      .bbutons {
+        height: 30px;
+        font-family: Copperplate Gothic Bold;
+        font-weight: bold;
+      }
+
+      .scr,
+      .demo {
+        text-align: center;
+        position: relative;
+        z-index: 0;
+      }
+
+      .block {
+        position: relative;
+        width: 500px;
+        height: 500px;
+        background-color: #31a674;
+        z-index: 1;
+      }
+
+      .block2 {
+        margin: auto;
+        position: absolute;
+        width: 500px;
+        height: 75px;
+        background-color: #83ad92;
+        z-index: 1;
+      }
+	body{
+		background-color: #21282d;
+	}
+	nav{
+		background: rgba(0, 0, 0, 0.2);
+		height: 30px;
+		color: white;
+		margin-left: -8px;
+		margin-top: 2%;
+		width: 101.05%;
+		height: 13%;
+	}
+	.homelogo{
+		margin-top: 6px;
+		margin-left: 10%;
+		float: left;
+	}
+	.aboutlogo{
+		margin-top: 10px;
+		float: right;
+		margin-right: 8.2%;
+	}
+	.logo{
+		display: block;
+		margin-left: 43.5%;
+	}
+	footer{
+		text-align: center;
+		color: #f7faf9;
+		font-family: Verdana, Geneva, sans-serif;
+	}
+    </style>
+  </head>
+
+  <body>
+	<header>
+		<nav>
+			<a href="../../About/about.html"><img class="aboutlogo" src="../../Pictures/aboutlogo.png" height="70px"></a>
+			<a href="../../Homepage/homepage.html"><img class="homelogo" src="../../Pictures/homelogo.png" height="80px" width="100px"></a>
+			<img class="logo" src="../../Pictures/logo.png" height="100px">
+		</nav>
+	</header>
+	<br>
+    <audio id="hit">
+		<source src="shoot.wav" type="audio/wav">
+	</audio>
+	<div id="gameover"  style='width: 500px; height: 585px; background-color: #31a674; color: white; text-align:center; z-index:-1; position: absolute; margin-left: 33%;'><p style='font-family:Castellar;text-align:center;' >GAME OVER</p><p style='font-family:Castellar;text-align:center;'>Score: <span id='idk'></span></p><button onclick='reload()' style='font-family:Castellar;font-weight:bold'>REPLAY?</button></div>
+    <script>
+      var x = 0;
+      var sec = 20;
+      var tag;
+      var count;
+      var wh;
+      var y;
+      var soundmy;
+      var mysound;
+
+      mysound = document.getElementById("hit");
+
+      function choice() {
+        document.getElementById('but').remove();
+        document.getElementById('butons').style.zIndex = "2";
+      }
+
+      function whchange3() {
+        document.getElementById('target').style.height = "25";
+        document.getElementById('target').style.width = "25";
+        wh = 25;
+        start();
+      }
+
+      function whchange2() {
+        document.getElementById('target').style.height = "35";
+        document.getElementById('target').style.width = "35";
+        wh = 35;
+        start();
+      }
+
+      function whchange1() {
+        document.getElementById('target').style.height = "45";
+        document.getElementById('target').style.width = "45";
+        wh = 45;
+        start();
+      }
+
+      function reload() {
+        window.location.reload(false);
+      }
+      //to start the game
+      function start() {
+        document.getElementById('butons').remove();
+        tag = document.getElementById("target");
+        y = 500 - wh;
+        tag.style.left = Math.floor(Math.random() * y);
+        tag.style.top = Math.floor(Math.random() * y);
+        document.getElementById('target').style.zIndex = "2";
+        document.getElementById('scr').style.zIndex = "2";
+        document.getElementById('demo').style.zIndex = "2";
+        setInterval(function() {
+          var a =
+            new Date();
+          document.getElementById("demo").innerHTML = "Game ends in " + sec.toFixed(2) + " seconds!";
+          sec--;
+          if (sec <= 0) {
+            document.getElementById("gameover").style.zIndex="20";
+            document.getElementById("idk").innerHTML = x;
+          }
+        }, 1000);
+      }
+      //the things you shoot
+      function target() {
+        mysound.play();
+        x = x + 1;
+        document.getElementById("scr").innerHTML = "Score: " + x;
+        tag = document.getElementById("target");
+        tag.style.left = Math.floor(Math.random() * 475);
+        tag.style.top = Math.floor(Math.random() * 475);
+        if (x > 5) {
+          sec = sec + 0.20;
+        }
+      }
+
+    </script>
+    <div class="container">
+      <div>
+        <button onclick="choice()" id="but" class="buton">START</button>
+      </div>
+      <div class="game">
+
+        <span class="target" id="target" onclick="target()"></span>
+
+      </div>
+      <div class="butons" id="butons">
+        <button class="bbutons" id="butons1" onclick="whchange1()">Large(EASY)</button>
+        <button class="bbutons" id="butons1" onclick="whchange2()">Average(MEDIUM)</button>
+        <button class="bbutons" id="butons1" onclick="whchange3()">Small(HARD)</button>
+      </div>
+      <div class="block">
+      </div>
+    </div>
+    </div>
+    <div class="container2">
+      <div class="block2"></div>
+      <div id="demo" class="demo">
+        <p>
+          Game ends in 20 seconds!
+        </p>
+      </div>
+      <div id="scr" class="scr">
+        <p>
+          Score: 0
+        </p>
+      </div>
+    </div>
+	<br>
+	<footer>
+		&copy; PLAYER ONE 2019 | PHILIPPINE SCIENCE HIGH SCHOOL - EASTERN VISAYAS CAMPUS, ALL RIGHTS RESERVED
+	</footer>
+  </body>
+
+</html>
